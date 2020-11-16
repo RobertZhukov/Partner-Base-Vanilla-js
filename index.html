@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta class="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="./src/css/utility.css" />
+        <link rel="stylesheet" href="./src/css/main.css" />
+        <link rel="stylesheet" href="./src/css/table-products.css" />
+		<link rel="stylesheet" href="./src/css/modals.css" />
+		<link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+        <script defer type="module" src="./src/js/controller/app.js"></script>
+        <script
+            src="https://kit.fontawesome.com/84828b1b18.js"
+            crossorigin="anonymous"></script>
+        <title>Store Base</title>
+    </head>
+    <body>
+        <div class="main">
+            <div class="stores-list">
+                <h2>Stores list</h2>
+                <div class="search">
+                    <form action="">
+                        <input
+                            type="text"
+                            class="search-stores"
+                            autocomplete="off"
+                            placeholder="Search.."
+                        />
+                        <button class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="anchor-search-left">
+                    <button class="hide-search">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <button class="anchor-search">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                </div>
+                <div class="show-search-left">
+                    <button class="show-search">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div>
+					<ul class="list-all">
+						<!-- Stores List -->
+					</ul>
+				</div>
+                <footer class="footer-left">
+                    <button class="create-store">
+                        <i class="fas fa-plus"></i>
+                        Create
+					</button>
+					<button class="delete-store">
+						<i class="far fa-trash-alt"></i>
+						Delete
+					</button>
+                </footer>
+            </div>
+            <div class="store-details">
+                <div class="preview">
+                    <div class="preview-title">Store is not selected</div>
+                    <div class="preview-info">
+                        <div>
+                            <i class="fas fa-store-alt"></i>
+                        </div>
+                        <div>
+							<h3>The store is not selected</h3>
+                        </div>
+                        <div>
+                            <p>Pleace select the store to preceed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-stores"></div>
+            </div>
+		</div>
+		<div class="burger-menu">
+			<div>
+				<i id="burger-on" class="fas fa-bars"></i>
+			</div>
+			<div>
+				<i id="burger-off" class="fas fa-times"></i>
+			</div>
+		</div>
+		<div class="pop-up-status">
+		</div>
+		<div class="pop-up-confirm">
+			<div class="confirm-box">
+				<div class="confirm-massege">
+				</div>
+				<div class="buttons-confirm">
+					<div>
+						<button class="confirm-delete-btn" > Delete </button>
+					</div>
+					<div>
+						<button class="confirm-cancel-btn" > Cancel </button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-store-background">
+			<div class="modal-store">
+				<div class="container-modal">
+					<div>
+						<h1>Create new store</h1>
+					</div>
+					<div class="hr"></div>
+					<form  class="modal-form" id="create-store">
+						<h2><span class="star">*</span> Name: </h2>
+						<input type="text" class="username" placeholder="Enter name" required />
+						<h2><span class="star">*</span> E-mail: </h2>
+						<input type="email" name="email" class="email" autocomplete="off" placeholder="Enter email" />
+						<h2><span class="star">*</span> Phone Number:</h2>
+						<input type="number" class="phone" placeholder="Enter phone number" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" required />
+						<h2><span class="star">*</span> Address:</h2>
+						<input type="address" class="address" placeholder="Enter address" required />
+						<h2><span class="star">*</span> Established:</h2>
+						<input type="date" class="date" placeholder="MMM d. y" required />
+						<h2><span class="star">*</span> Floor area:</h2>
+						<input type="number" class="area" placeholder="Enter floor area (in sq.m)" required />
+						<div class="buttons-bg">
+						<div>
+							<button  class="create-store-btn" > Create </button>
+						</div>
+						<div>
+							<button class="cancel-store-btn" > Cancel </button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal-product-background">
+			<div class="modal-product">
+				<div class="container-modal">
+					<div>
+						<h1>Create new product</h1>
+					</div>
+					<div class="hr"></div>
+					<form class="modal-form">
+						<h2><span class="star">*</span> Name: </h2>
+						<input type="text" class="username-product" placeholder="Enter name" required />
+						<h2><span class="star">*</span> Prise: </h2>
+						<div><input type="number" class="prise-product" placeholder="Enter prise in USD" /></div>
+						<h2><span class="star">*</span> Specs: </h2>
+						<textarea rows="3" cols="30" class="specs-product text-area" placeholder="Enter product specs" required ></textarea>
+						<h2><span class="star">*</span> Rating: </h2>
+						<input type="number" class="rating-product" placeholder="Enter rating from 1 to 5" min="0" max="5" required />
+						<h2><span class="star">*</span> Supplier info: </h2>
+						<textarea rows="3" cols="30" class="supplier-info-product text-area" placeholder="Enter supplier info" required ></textarea>
+						<h2><span class="star">*</span> Made In:</h2>
+						<input type="text" class="made-in-product" placeholder="Enter origin country" required />
+						<h2><span class="star">*</span> Production company name:</h2>
+						<input type="text" class="company-name-product" placeholder="Enter manufacturer name" required />
+						<h2><span class="star">*</span> Status:</h2>
+						<select size="1" class="status-product">
+							<option selected value="OK">OK</option>
+							<option value="STORAGE">STORAGE</option>
+							<option value="OUT_OF_STOCK">OUT_OF_STOCK</option>
+						 </select>
+						 <div class="buttons-bg">
+							<div>
+								<button class="create-product-btn" > Create </button>
+							</div>
+							<div>
+								<button class="cancel-product-btn" > Cancel </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
