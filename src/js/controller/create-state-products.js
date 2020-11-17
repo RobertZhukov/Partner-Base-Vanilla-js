@@ -4,19 +4,23 @@ import {
 	updateTableStateOUT_OF_STOCK, 
 	updateTableStateALL 
 } from "../model/update-table-state.js";
-import Stores from "../data.js"
+import Stores from "../data.js";
+import { STORES } from "./app.js"
 
 /**
 * Create state products block
 */
-export default function createStateProducts(id) {
-    const allProducts = Stores[id].rel_Products.length;
+export default function createStateProducts(id, key) {
+	//debugger
+    const allProducts = STORES[key].rel_Products.length;
     const stateProducts = document.createElement("div");
     let stateOk = 0;
     let stateStorage = 0;
     let stateOutOfStock = 0;
 
-	Stores[id].rel_Products.forEach(product => {
+	//debugger
+
+	STORES[key].rel_Products.forEach(product => {
 		let element = product.Status;
 
         switch (element) {
@@ -71,19 +75,19 @@ export default function createStateProducts(id) {
 	document.querySelector("#stores-info").appendChild(stateProducts);
 	
 	document.querySelector(".fa-check-circle").addEventListener("click", () => {
-		updateTableStateOK(id, Stores[id].rel_Products);
+		updateTableStateOK(key, STORES[key].rel_Products);
 	});
 
 	document.querySelector(".fa-exclamation-triangle").addEventListener("click", () => {
-		updateTableStateSTORAGE(id, Stores[id].rel_Products);
+		updateTableStateSTORAGE(key, STORES[key].rel_Products);
 	});
 
 	document.querySelector(".fa-exclamation-circle").addEventListener("click", () => {
-		updateTableStateOUT_OF_STOCK(id, Stores[id].rel_Products);
+		updateTableStateOUT_OF_STOCK(key, STORES[key].rel_Products);
 	});
 
 	document.querySelector(".all").addEventListener("click", () => {
-		 updateTableStateALL(id, Stores[id].rel_Products);
+		 updateTableStateALL(key, STORES[key].rel_Products);
 	});
 };
 

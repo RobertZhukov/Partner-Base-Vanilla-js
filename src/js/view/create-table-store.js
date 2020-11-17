@@ -1,12 +1,13 @@
 import { updateTableRow } from "../model/search-sort-stores.js";
 import { checkProduct } from "../utility/utility.js";
 import { sortTableByNameASC, sortTableByNameDESC } from "../model/search-sort-stores.js";
-import Stores from "../data.js"
+import Stores from "../data.js";
+import { STORES } from "../controller/app.js"
 
 /**
 * Creating a product tablereate table 
 */
-export default function createTableStore(id, filterList) {
+export default function createTableStore(key, filterList) {
 	
     const table = document.createElement("table");
     table.id = "create-table-products";
@@ -87,20 +88,20 @@ export default function createTableStore(id, filterList) {
 	* Check if there are products and display a notification if not
 	*/
 	//alert(id)
-	if (Stores[id].rel_Products.length === 0) {
+	if (STORES[key].rel_Products.length === 0) {
 		checkProduct();
 	}
 
 	if (filterList) {
 		updateTableRow(filterList);
 	} else {
-		updateTableRow(Stores[id].rel_Products);
+		updateTableRow(STORES[key].rel_Products);
 	}
 
 	/* /* *
 	* Sort by columns
 	*/
-	let productsListCopy = Object.assign([], Stores[id].rel_Products);
+	let productsListCopy = Object.assign([], STORES[key].rel_Products);
 	const allSortButton = document.querySelectorAll("div.sort-table");
 
 	allSortButton.forEach(element => 
@@ -117,7 +118,7 @@ export default function createTableStore(id, filterList) {
 				this.lastChild.classList.remove("inactive-table");
 			} else if (targetTh.classList.contains("js-desc")) {
 				document.querySelector(".table-rows").innerHTML = "";
-				updateTableRow(Stores[id].rel_Products);
+				updateTableRow(STORES[key].rel_Products);
 				targetTh.classList.remove("js-desc");
 				this.lastChild.classList.add("inactive-table");
 				this.querySelector(".fa-sort").style.display = "block";

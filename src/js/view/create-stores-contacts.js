@@ -1,18 +1,20 @@
 import formatDate from "../model/format-date.js";
-import Stores from "../data.js"
+import Stores from "../data.js";
+import { STORES } from "../controller/app.js"
 
 /**
 * Creating a store contact block
 */
 export default function createStoresContacts(key, id) {
-	const email = Stores[key].Email;
-    const phoneNumber = Stores[key].PhoneNumber;
-    const address = Stores[key].Address;
-	const floorArea = Stores[key].FloorArea;
+	const email = STORES[key].Email;
+    const phoneNumber = STORES[key].PhoneNumber;
+    const address = STORES[key].Address;
+	const floorArea = STORES[key].FloorArea;
 	
     const storeDetails = document.createElement("div");
 	storeDetails.id = "stores-info";
 	storeDetails.setAttribute("storeId", id);
+	storeDetails.setAttribute("storeKey", key);
 
     const innerContacts = `
 		<div class="contacts-title">

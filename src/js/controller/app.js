@@ -5,11 +5,18 @@ import { openCreateStore, closeCreateStore, sendNewStore, deleteStore } from "..
 import { anchorSearch, showSearch, hideSearch } from "../view/buttons-hide-show.js";
 import { openMenu, closeMenu } from "../view/adaptability.js";
 import showStoreInfo from "../view/show-store-info.js";
+import Stores from "../data.js";
 
+//debugger
+	if (localStorage["Stores"]) {
+		var STORES = JSON.parse(localStorage["Stores"]);
+	} else {
+		var STORES = Stores;
+	}
+//debugger
 /**
 * Create Stores List 
 */
-
 createStoresList();
 			
 const allStoresItem = document.querySelectorAll("li.list-item");
@@ -51,3 +58,5 @@ document.querySelector(".fa-bars").addEventListener("click", openMenu);
 * Close menu in mobile version
 */
 document.querySelector(".fa-times").addEventListener("click", closeMenu);
+
+export { STORES };

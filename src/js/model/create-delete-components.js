@@ -1,6 +1,9 @@
 import { postRequest } from "./server-data.js";
 import { popUpStatus } from "../utility/utility.js";
 import { deleteRequest} from "./server-data.js";
+import createStoresList from "../view/create-stores-list.js";
+import Stores from "../data.js";
+import { STORES } from "../controller/app.js"
 
 /**
 * Close a modal form for creating a store
@@ -32,13 +35,18 @@ function sendNewStore() {
 		"PhoneNumber": phone,
 		"Address": address,
 		"Established": date,
-		"FloorArea": area
+		"FloorArea": area,
+		"id": STORES.length + 1,
+		"rel_Products": []
 	};
 
 	if (username && email && phone && address && date && area) {
-		postRequest(`Stores`, storeData)
+
+		STORES.unshift(storeData);
+		localStorage["Stores"] = JSON.stringify(STORES)
+		
 		document.querySelector(".modal-store-background").classList.remove("show-modal");
-		popUpStatus("The product has been removed!")
+		popUpStatus("The product has been created!")
 	} else {
 		popUpStatus("Enter all data correctly!")
 	}
@@ -102,8 +110,12 @@ function deleteStore() {
 	if (document.querySelector("#stores-info")) {
 		const confirmation = confirm("Are you sure you want to delete the store?")
 		if (confirmation) {
-			let selectStoreId = document.querySelector("#stores-info").getAttribute("storeId");
-			deleteRequest(`Stores/${selectStoreId}`);
+			let selectStoreId = document.querySelector("#stores-info").getAttribute("storeKey");
+			
+			STORES.splice(selectStoreId, 1)
+			localStorage["Stores"] = JSON.stringify(STORES);
+
+			location.reload();
 		}
 	} else {
 		  popUpStatus(`Select the store you want to delete :)`)

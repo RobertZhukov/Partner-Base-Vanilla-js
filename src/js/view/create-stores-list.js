@@ -1,16 +1,17 @@
 import Stores from "../data.js"
+import { STORES } from "../controller/app.js"
 
 /**
 * Create stores list
 */
 export default function createStoresList() {
-    for (let i = 0; i < Stores.length; i++) {
+    for (let i = 0; i < STORES.length; i++) {
         const ul = document.createElement("ul");
 		const li = document.createElement("li");
-		const idStore = Stores[i].id
-        const name = Stores[i].Name;
-        const address = Stores[i].Address;
-        const floorArea = Stores[i].FloorArea;
+		const idStore = STORES[i].id;
+        const name = STORES[i].Name;
+        const address = STORES[i].Address;
+        const floorArea = STORES[i].FloorArea;
 
         ul.className = "list-all";
         li.className = "list-item";

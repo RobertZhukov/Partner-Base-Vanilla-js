@@ -14,8 +14,8 @@ export default function createStoresDetails(li) {
 	const key = Number(li.getAttribute("key"));
 
 	createStoresContacts(key, id);
-	createStateProducts(id);
-	createTableStore(id);
+	createStateProducts(id, key);
+	createTableStore(key);
 	createFooter();
 	
     document.querySelector(".hide-right-search").onclick = hideSearchRight;
