@@ -78,7 +78,7 @@ function sendNewProduct() {
 	let madeIn = document.querySelector(".made-in-product").value;
 	let companyName = document.querySelector(".company-name-product").value;
 	let status = document.querySelector(".status-product").value;
-	let storeId = document.querySelector("#stores-info").getAttribute("storeId");
+	let storeId = document.querySelector(".choice-store").getAttribute("key");
 	let productData = {
 		"Name": username,
 		"Price": prise,
@@ -89,15 +89,18 @@ function sendNewProduct() {
 		"MadeIn": madeIn,
 		"ProductionCompanyName": companyName,
 		"Status": status,
-		"StoreId": storeId,
+		"id":  Math.floor(Math.random()*100) + 50,
 	};
 
 	if (username && prise && specs && rating &&
 		supplierInfo && madeIn && companyName && 
 		status && storeId) {
-		postRequest(`Products`, productData).then(response => console.log(response))
+		
+		STORES[storeId].rel_Products.unshift(productData);
+		localStorage["Stores"] = JSON.stringify(STORES)
+
 		document.querySelector(".modal-product-background").classList.remove("show-modal");
-		popUpStatus("The product has been removed!")
+		popUpStatus("The product has been created!")
 	} else {
 		popUpStatus("Enter all data correctly!")
 	}

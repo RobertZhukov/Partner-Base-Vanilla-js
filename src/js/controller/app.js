@@ -7,13 +7,12 @@ import { openMenu, closeMenu } from "../view/adaptability.js";
 import showStoreInfo from "../view/show-store-info.js";
 import Stores from "../data.js";
 
-//debugger
 	if (localStorage["Stores"]) {
-		var STORES = JSON.parse(localStorage["Stores"]);
+//localStorage.clear();
+		var STORES = JSON.parse(localStorage.getItem("Stores"));
 	} else {
 		var STORES = Stores;
 	}
-//debugger
 /**
 * Create Stores List 
 */

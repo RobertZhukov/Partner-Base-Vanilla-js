@@ -93,9 +93,9 @@ export default function createTableStore(key, filterList) {
 	}
 
 	if (filterList) {
-		updateTableRow(filterList);
+		updateTableRow(filterList, key);
 	} else {
-		updateTableRow(STORES[key].rel_Products);
+		updateTableRow(STORES[key].rel_Products, key);
 	}
 
 	/* /* *

@@ -53,7 +53,7 @@ export default function createStoresContacts(key, id) {
 						<p>Established Date:</p>
 					</div>
 					<div>
-						<p>${formatDate(Stores, key)}</p>
+						<p>${formatDate(STORES, key)}</p>
 					</div>
 				</div>
 				<div class="contact-item">

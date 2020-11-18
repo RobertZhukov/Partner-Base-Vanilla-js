@@ -1,12 +1,13 @@
 import { deleteRequest } from "../model/server-data.js";
-import { searchProducts } from "../model/search-sort-stores.js";
+import { searchProducts, updateTableRow } from "../model/search-sort-stores.js";
+import { STORES } from "../controller/app.js"
 
 /**
 * Createing table rows
 *
 * @param {object} product
 */
-export default function createTableRow(product) {
+export default function createTableRow(product, key) {
 
 	const tableRow = document.createElement("tr");
 	const name = product["Name"];
@@ -59,9 +60,6 @@ export default function createTableRow(product) {
 				<div>
 					<i class="fas fa-backspace"></i>
 				</div>
-				<div>
-					<i class="fas fa-chevron-right"></i>
-				</div>
 			</div>
 		</td>`;
 
@@ -69,16 +67,18 @@ export default function createTableRow(product) {
 	document.querySelector(".table-rows").appendChild(tableRow);
 	document.querySelector(".input-search").oninput = searchProducts;
 
-	document.querySelectorAll("i.fa-backspace").forEach((i) => {
-		i.addEventListener("click", function (e) {
-			const confirmation = confirm("Are you sure you want to delete the store?")
-			
-			if (confirmation) {
+	const allBackspase = document.querySelectorAll("i.fa-backspace");
+	allBackspase.forEach((el) => {
+		el.addEventListener("click", function (e) {
 				let targetThID = e.target.closest("tr");
-				let rowDeleteID = targetThID.getAttribute("productId");
-				
-				deleteRequest(`Products/${rowDeleteID}`);
-			}
+				let rowDeleteID = targetThID.getAttribute("productid");
+				let storeId = document.querySelector(".choice-store").getAttribute("key");
+				let rel_ProductsNew = STORES[storeId].rel_Products.filter(el => el.id !== +rowDeleteID)
+
+				STORES[storeId].rel_Products = rel_ProductsNew;
+				localStorage["Stores"] = JSON.stringify(STORES);
+
+				location.reload();
 		});
 	});	
 };

@@ -94,11 +94,11 @@ function searchProducts() {
 /**
 * Update Table Row
 */
-function updateTableRow(productsListCopy) {
+function updateTableRow(productsListCopy, key) {
 	//console.log(`UTROW: ${productsListCopy}`)
 	productsListCopy.forEach(product => {
 		//console.log(`PRODUCT: ${product}`)
-		createTableRow(product)
+		createTableRow(product, key)
 	})	
 };
 
